@@ -1,0 +1,80 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title></title>
+  <link href="css/style.css" rel="stylesheet">
+  <meta content="" name="description">
+
+  <meta content="" property="og:title">
+  <meta content="" property="og:type">
+  <meta content="" property="og:url">
+  <meta content="" property="og:image">
+
+  <link href="favicon.ico" rel="icon" sizes="any">
+  <link href="icon.svg" rel="icon" type="image/svg+xml">
+  <link href="icon.png" rel="apple-touch-icon">
+
+  <link href="site.webmanifest" rel="manifest">
+  <meta content="#fafafa" name="theme-color">
+
+</head>
+
+<body>
+<!-- Add your site or application content here -->
+<p>Testing device identification through external vendor's JS integrations.</p>
+<label for="txtPhoneNumber">Phone: </label><input id="txtPhoneNumber" type="text">
+<button id="btnSubmit" onclick="callAPI()">Submit</button>
+
+<p id="txtDebugText">Debug text...</p>
+<p id="txtAPIURI">API URI will appear here</p>
+
+<script src="js/app.js"></script>
+<script src="js/klarna_toolkit.js"></script>
+<script>
+  window.onload = function () {
+    try {
+      if (typeof klarna.profile === 'function') {
+        var x = klarna.profile('h.online-metrix.net', '87rxrdob', 'sessiontest58');
+        console.log(x);
+        console.log('sessionid -  ses123');
+      } else {
+        console.log('klarna.profile is not defined');
+      }
+    } catch (err) {
+      console.log('error: ' + err);
+    }
+  };
+</script>
+
+<script>
+  function callAPI() {
+    // Assuming you're sending the text as a query parameter to a GET endpoint
+    var userInput = document.getElementById('txtPhoneNumber').value;
+    var apiURL = 'https://h-api-sb.online-metrix.net/api/session-query?org_id=87rxrdob&api_key=i4lqdshhsbmz0kww&session_id=sessiontest58&service_type=session-policy&account_telephone=' + encodeURIComponent(userInput);
+
+    fetch(apiURL)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json(); // or .text() if the response is plain text
+      })
+      .then(data => {
+        console.log(data); // Process your data here
+        document.getElementById('txtDebugText').innerText = JSON.stringify(data); // Example of displaying the response
+      })
+      .catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+      });
+    document.getElementById('txtDebugText').innerText = userInput;
+    document.getElementById('txtAPIURI').innerText = apiURL;
+  }
+
+</script>
+
+</body>
+
+</html>
