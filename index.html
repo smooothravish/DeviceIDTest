@@ -24,6 +24,31 @@
       window.IncogniaWebSdk.init('3048e4b7-5938-49d8-abeb-4bee270bdcca')
     )
   </script>
+  <script>
+    var isSandbox=true;
+    var sardineHost = isSandbox ? 'api.sandbox.sardine.ai' : 'api.sardine.ai'; //please set isSandbox to true in Sandbox
+    (function () {
+      var loader = document.createElement('script');
+      loader.type = 'text/javascript';
+      loader.async = true;
+      loader.src = `https://${sardineHost}/assets/loader.min.js`;
+      loader.onload = function() {
+        sardineContext = window._Sardine.createContext({
+          clientId: "479e58fd-4fc2-49bc-ad1c-0ce41cc9ab65", //CHANGE THIS
+          sessionKey: uuidv4(), // Please CHANGE this to  pass server side generated sessionKey and you will need this again for back-end  API call
+          userIdHash:"12345", //CHANGE this to pass internal userId or hash of email/phone. Dont pass it if its not available.
+          flow: location.pathname,
+          environment: isSandbox ? "sandbox" : "production",
+          parentElement: document.body,
+          // called when sardine generates/restores deviceID for given device.
+          onDeviceResponse: function(data) {
+          }
+        });
+      };
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(loader, s);
+    })();
+  </script>
 
 </head>
 
@@ -71,7 +96,11 @@
 
 <p id="displayText">Your text will appear here</p>
 
-
+<noscript>
+  <img
+    src="https://<REPLACE-ME>/v1/a.png?clientId=<REPLACE-ME>&sessionKey=<REPLACE-ME>&flow=<REPLACE-ME>&ns=1"
+    style="display: none" />
+</noscript>
 
 <script>
   function callAPI() {
