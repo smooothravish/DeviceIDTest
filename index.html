@@ -26,7 +26,7 @@
   </script>
   <script>
     var isSandbox=true;
-    var sardineHost = isSandbox ? 'api.sandbox.sardine.ai' : 'api.sardine.ai'; //please set isSandbox to true in Sandbox
+    var sardineHost = 'api.sandbox.sardine.ai' ; //please set isSandbox to true in Sandbox
     (function () {
       var loader = document.createElement('script');
       loader.type = 'text/javascript';
@@ -35,10 +35,10 @@
       loader.onload = function() {
         sardineContext = window._Sardine.createContext({
           clientId: "479e58fd-4fc2-49bc-ad1c-0ce41cc9ab65", //CHANGE THIS
-          sessionKey: uuidv4(), // Please CHANGE this to  pass server side generated sessionKey and you will need this again for back-end  API call
-          userIdHash:"12345", //CHANGE this to pass internal userId or hash of email/phone. Dont pass it if its not available.
-          flow: location.pathname,
-          environment: isSandbox ? "sandbox" : "production",
+          sessionKey: 'sessionID234', // Please CHANGE this to  pass server side generated sessionKey and you will need this again for back-end  API call
+          userIdHash:"b8e1e52d-cf3b-4700-b140-532628c36bc7", //CHANGE this to pass internal userId or hash of email/phone. Dont pass it if its not available.
+          flow: "abcd",
+          environment: "sandbox" ,
           parentElement: document.body,
           // called when sardine generates/restores deviceID for given device.
           onDeviceResponse: function(data) {
@@ -49,64 +49,71 @@
       s.parentNode.insertBefore(loader, s);
     })();
   </script>
+  <script type="text/javascript">
+    (function(n,e,u,r,o,i,d){ n.nid=n.nid||function(){(n.nid.q=n.nid.q||[]).push(arguments)}; o=e.createElement(u);i=e.getElementsByTagName(u)[0];o.async=1; o.src=r;i.parentNode.insertBefore(o,i); })(window,document,'script','//scripts.neuro-id.com/c/nid-hails661.js');
+    //  nid('setRegisteredUserId’, ‘your_user_id' );
+    nid('start');
+    nid('identify', 'sessionid5');
+  </script>
+
+  <!-- Add your site or application content here -->
+  <p>Hello world! This is HTML5 Boilerplate.</p>
+  <script src="js/app.js"></script>
+  <script src="js/klarna_toolkit.js"></script>
+  <script defer src="https://repo.incognia.com/web/latest/incognia-web-sdk.js"></script>
+  <script>
+    // Initialize the agent on page load.
+    const fpPromise = import('https://fpjscdn.net/v3/cLUP4yT1dAUJAO90UKgp')
+      .then(FingerprintJS => FingerprintJS.load({
+        region: "eu"
+      }))
+
+    // Get the visitorId when you need it.
+    fpPromise
+      .then(fp => fp.get())
+      .then(result => {
+        const visitorId = result.visitorId
+        console.log(visitorId)
+      })
+
+  </script>
+  <script>
+    window.onload = function() {
+      try {
+        if (typeof klarna.profile === 'function') {
+          //var y = 'sessiontest34'
+          var x = klarna.profile('h.online-metrix.net', '87rxrdob', 'sessiontest64');
+          console.log(x);
+          console.log('sessionid -  ses123');
+        } else {
+          console.log('klarna.profile is not defined');
+        }
+      } catch(err){
+        console.log('error: ' + err);
+      }
+    };
+  </script>
 
 </head>
 
+
 <body>
 
-<!-- Add your site or application content here -->
-<p>Hello world! This is HTML5 Boilerplate.</p>
-<script src="js/app.js"></script>
-<script src="js/klarna_toolkit.js"></script>
-<script defer src="https://repo.incognia.com/web/latest/incognia-web-sdk.js"></script>
-<script>
-  // Initialize the agent on page load.
-  const fpPromise = import('https://fpjscdn.net/v3/cLUP4yT1dAUJAO90UKgp')
-    .then(FingerprintJS => FingerprintJS.load({
-      region: "eu"
-    }))
-
-  // Get the visitorId when you need it.
-  fpPromise
-    .then(fp => fp.get())
-    .then(result => {
-      const visitorId = result.visitorId
-      console.log(visitorId)
-    })
-
-</script>
-<script>
-  window.onload = function() {
-    try {
-      if (typeof klarna.profile === 'function') {
-        //var y = 'sessiontest34'
-        var x = klarna.profile('h.online-metrix.net', '87rxrdob', 'sessiontest63');
-        console.log(x);
-        console.log('sessionid -  ses123');
-      } else {
-        console.log('klarna.profile is not defined');
-      }
-    } catch(err){
-      console.log('error: ' + err);
-    }
-  };
-</script>
 <input type="text" id="myTextBox">
-<button id="myButton" onclick="callAPI()">Submit</button>
+<button id="myButton" onclick="callAPI()">Submit for TMX</button>
+<button id="myButton2" onclick=nid('closeSession');>Submit for NeuroID</button>
 
 <p id="displayText">Your text will appear here</p>
-
 <noscript>
   <img
-    src="https://<REPLACE-ME>/v1/a.png?clientId=<REPLACE-ME>&sessionKey=<REPLACE-ME>&flow=<REPLACE-ME>&ns=1"
+    src="https://api.sandbox.sardine.ai/v1/a.png?clientId=479e58fd-4fc2-49bc-ad1c-0ce41cc9ab65&sessionKey=sessionID234&flow=abcd&ns=1"
     style="display: none" />
 </noscript>
-
 <script>
   function callAPI() {
     // Assuming you're sending the text as a query parameter to a GET endpoint
     var userInput = document.getElementById('myTextBox').value;
-    var apiURL = 'https://h-api-sb.online-metrix.net/api/session-query?org_id=87rxrdob&api_key=i4lqdshhsbmz0kww&session_id=sessiontest63&service_type=session-policy&account_telephone=' + encodeURIComponent(userInput);
+    var apiURL = 'https://h-api-sb.online-metrix.net/api/session-query?org_id=87rxrdob&api_key=i4lqdshhsbmz0kww&session_id=sessiontest64&service_type=session-policy&account_telephone=' + encodeURIComponent(userInput);
 
     fetch(apiURL)
       .then(response => {
@@ -127,6 +134,8 @@
 
 
 </script>
+
+
 
 </body>
 
