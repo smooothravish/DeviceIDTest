@@ -53,7 +53,7 @@
     (function(n,e,u,r,o,i,d){ n.nid=n.nid||function(){(n.nid.q=n.nid.q||[]).push(arguments)}; o=e.createElement(u);i=e.getElementsByTagName(u)[0];o.async=1; o.src=r;i.parentNode.insertBefore(o,i); })(window,document,'script','//scripts.neuro-id.com/c/nid-hails661.js');
     //  nid('setRegisteredUserId’, ‘your_user_id' );
     nid('start');
-    nid('identify', 'sessionid90');
+    nid('identify', 'sessionid160');
   </script>
 
   <!-- Add your site or application content here -->
@@ -100,8 +100,8 @@
 <body>
 
 <input type="text" id="phone_number">
-<button id="myButton2" onclick=nid('closeSession');>Submit for NeuroID</button>
 <button id="myButton" onclick="callAPI()">Submit for TMX</button>
+<button id="myButton2" onclick=nid('closeSession');>Submit for NeuroID</button>
 <p id="displayText">Your text will appear here</p>
 <noscript>
   <img
@@ -111,7 +111,7 @@
 <script>
   function callAPI() {
     // Assuming you're sending the text as a query parameter to a GET endpoint
-    var userInput = document.getElementById('myTextBox').value;
+    var userInput = document.getElementById('phone_number').value;
     var apiURL = 'https://h-api-sb.online-metrix.net/api/session-query?org_id=87rxrdob&api_key=i4lqdshhsbmz0kww&session_id=sessiontest65&service_type=session-policy&account_telephone=' + encodeURIComponent(userInput);
 
     fetch(apiURL)
