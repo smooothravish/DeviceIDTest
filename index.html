@@ -35,8 +35,8 @@
       loader.onload = function () {
         sardineContext = window._Sardine.createContext({
           clientId: "479e58fd-4fc2-49bc-ad1c-0ce41cc9ab65", //CHANGE THIS
-          sessionKey: 'sessionID235', // Please CHANGE this to  pass server side generated sessionKey and you will need this again for back-end  API call
-          userIdHash: "b8e1e52d-cf3b-4700-b140-532628c36bc7", //CHANGE this to pass internal userId or hash of email/phone. Dont pass it if its not available.
+          sessionKey: 'Sesh403', // Please CHANGE this to  pass server side generated sessionKey and you will need this again for back-end  API call
+          userIdHash: "6506506506", //CHANGE this to pass internal userId or hash of email/phone. Dont pass it if its not available.
           flow: "abcd",
           environment: "sandbox",
           parentElement: document.body,
@@ -62,7 +62,7 @@
     })(window, document, 'script', '//scripts.neuro-id.com/c/nid-hails661.js');
     //  nid('setRegisteredUserId’, ‘your_user_id' );
     nid('start');
-    nid('identify', 'sessionid160');
+    nid('identify', 'Sesh403');
   </script>
 
   <!-- Add your site or application content here -->
@@ -90,9 +90,9 @@
       try {
         if (typeof klarna.profile === 'function') {
           //var y = 'sessiontest34'
-          var x = klarna.profile('h.online-metrix.net', '87rxrdob', 'Sesh400');
+          var x = klarna.profile('h.online-metrix.net', '87rxrdob', 'Sesh403');
           console.log(x);
-          console.log('sessionid -  Sesh400');
+          console.log('sessionid -  Sesh403');
         } else {
           console.log('klarna.profile is not defined');
         }
@@ -127,7 +127,7 @@
   function callAPI() {
     // Assuming you're sending the text as a query parameter to a GET endpoint
     var userInput = document.getElementById('phone_number').value;
-    var apiURL = 'https://h-api-sb.online-metrix.net/api/session-query?org_id=87rxrdob&api_key=i4lqdshhsbmz0kww&session_id=Sesh400&service_type=session-policy&account_telephone=' + encodeURIComponent(userInput);
+    var apiURL = 'https://h-api-sb.online-metrix.net/api/session-query?org_id=87rxrdob&api_key=i4lqdshhsbmz0kww&session_id=Sesh403&service_type=session-policy&account_telephone=' + encodeURIComponent(userInput);
 
     fetch(apiURL)
       .then(response => {
