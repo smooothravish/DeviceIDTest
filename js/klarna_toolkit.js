@@ -9,7 +9,7 @@
   }
   function l(E) {
     return (Math.floor(Math.random() * E.C) + E.v).toString(E.L)
-  };
+  }
   function T(E) {
     this.C = E
   }
