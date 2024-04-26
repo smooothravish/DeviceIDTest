@@ -35,7 +35,7 @@
       loader.onload = function () {
         sardineContext = window._Sardine.createContext({
           clientId: "479e58fd-4fc2-49bc-ad1c-0ce41cc9ab65", //CHANGE THIS
-          sessionKey: 'Sesh403', // Please CHANGE this to  pass server side generated sessionKey and you will need this again for back-end  API call
+          sessionKey: 'Sesh999', // Please CHANGE this to  pass server side generated sessionKey and you will need this again for back-end  API call
           userIdHash: "6506506506", //CHANGE this to pass internal userId or hash of email/phone. Dont pass it if its not available.
           flow: "abcd",
           environment: "sandbox",
@@ -90,7 +90,7 @@
       try {
         if (typeof klarna.profile === 'function') {
           //var y = 'sessiontest34'
-          var x = klarna.profile('h.online-metrix.net', '87rxrdob', 'Sesh403');
+          var x = klarna.profile('h.online-metrix.net', '87rxrdob', 'Sesh999');
           console.log(x);
           console.log('sessionid -  Sesh403');
         } else {
@@ -127,7 +127,7 @@
   function callAPI() {
     // Assuming you're sending the text as a query parameter to a GET endpoint
     var userInput = document.getElementById('phone_number').value;
-    var apiURL = 'https://h-api-sb.online-metrix.net/api/session-query?org_id=87rxrdob&api_key=i4lqdshhsbmz0kww&session_id=Sesh403&service_type=session-policy&account_telephone=' + encodeURIComponent(userInput);
+    var apiURL = 'https://h-api-sb.online-metrix.net/api/session-query?org_id=87rxrdob&api_key=i4lqdshhsbmz0kww&session_id=Sesh999&service_type=session-policy&account_telephone=' + encodeURIComponent(userInput);
 
     fetch(apiURL)
       .then(response => {
